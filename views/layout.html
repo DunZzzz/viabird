@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Viabird</title>
+		<link rel="stylesheet" type="text/css" href="/semantic/semantic.min.css">
+		<link rel="stylesheet" type="text/css" href="/semantic/calendar.min.css">
+		<style>
+
+		</style>
+		<script src="/jquery/jquery.min.js"></script>
+		<script src="/semantic/semantic.min.js"></script>
+		<script src="/semantic/calendar.min.js"></script>
+		{% block head %}{% endblock %}
+
+	</head>
+	<body style="">
+
+
+		<div class="ui top main menu fixed" style="margin-bottom: 0; height:90px">
+
+			<div class="item" style="width: 300px; text-align: center;">
+				<a href="/" style="height: 100%; width:100%">
+					<img src="/images/logo_cropped.png"
+						 style="width:auto; height: 100%; display: block; margin-left: auto; margin-right: auto;">
+				</a>
+			</div>
+
+			<a href="#" id="userDropdown" class="ui right floated dropdown item" tabindex="0"><p
+																				 style="text-align: center; margin: 0; padding-left:30px; padding-right: 30px;">Utilisateur<i
+																				 class="dropdown icon"></i></p>
+				<div class="menu transition hidden" tabindex="-1">
+					<div class="item" href="/logout" data-value="logout">Déconnection</div>
+				</div>
+			</a>
+
+		</div>
+
+		<div style="height: calc(100vh - 90px); top: 90px; position: relative" id="main_content">
+
+			<div id="main_pusher" class="pusher" style="width: 100vw; padding-left: 20px; padding-right: 20px;">
+				{% block content %}{% endblock %}
+			</div>
+
+		</div>
+
+		<script>
+$('.open.button')
+	.removeClass('disabled');
+
+$('#userDropdown').dropdown({
+	action: (text, value) => {
+		if (value === 'logout')
+			window.location.href = "/logout";
+		console.log(text, value);
+	}
+});
+		</script>
+	</body>
+</html>

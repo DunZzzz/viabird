@@ -1,0 +1,10 @@
+{
+  "development": {
+  },
+  "production": {
+	  "username": "viabird@gmail.com",
+	  "password": "1ort:142"
+  },
+  "test": {
+  }
+}

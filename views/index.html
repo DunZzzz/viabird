@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<style>
+.display_table {
+	display: table;
+	width: 100%;
+}
+
+		.display_table_cell {
+			display: table-cell !important;
+		}
+
+		label.display_table_cell {
+			table-layout: fixed;
+			white-space: nowrap;
+			padding-right: 20px;
+			width: 15% !important;
+		}
+
+		input.display_table_cell {
+			width: 100% !important;
+		}
+
+		div.display_table_cell {
+			width: 100% !important;
+		}
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="ui four column grid">
+	{% for image in images %}
+	<div class="column">
+		<div class="ui segment">
+			<img class="ui fluid image" src="/images_photos/{{ image }}">
+		</div>
+	</div>
+	{% endfor %}
+</div>
+
+{% endblock %}
