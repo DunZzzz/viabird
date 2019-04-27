@@ -74,7 +74,7 @@ try:
       # PIR is triggered
       start_time=time.time()
       logging.info(' Motion detected!')
-      subprocess.call("POST/picture.sh", shell=True)
+      subprocess.call("picture.sh", shell=True)
       Previous_State=1
       RequestThread().start()
       
