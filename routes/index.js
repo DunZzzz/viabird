@@ -45,7 +45,6 @@ router.use('/', (req, res, next) => {
 
 router.get('/', (req, res) => {
 	fs.readdir('./public/images_photos', (err, images) => {
-		console.log(images);
 		res.render('index', { images: images.reverse() });
 	});
 });

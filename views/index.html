@@ -31,7 +31,8 @@
 
 {% block content %}
 
-<div class="ui four column grid">
+<div style="padding-top: 40px;">
+<div class="ui four column stackable grid">
 	{% for image in images %}
 	<div class="column">
 		<div class="ui segment">
@@ -39,6 +40,7 @@
 		</div>
 	</div>
 	{% endfor %}
+</div>
 </div>
 
 {% endblock %}

@@ -4,7 +4,8 @@
 	"private": true,
 	"main": "./bin/www",
 	"scripts": {
-		"production": "npm i && NODE_ENV=production nodemon . -e js,json,html ; echo \"Serveur stopped with status $?\""
+		"development": "nodemon . -e js,json,html ; echo \"Serveur stopped with status $?\"",
+		"production": "git pull && npm i && NODE_ENV=production nodemon . -e js,json,html ; echo \"Serveur stopped with status $?\""
 	},
 	"dependencies": {
 		"cookie-parser": "~1.4.3",
