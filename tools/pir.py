@@ -14,7 +14,7 @@ import threading
 import subprocess
 
 URL_ZIBASE = 'http://192.168.0.100/cgi-bin/domo.cgi?CMD=LM%2049'
-MOTION_ALARM_DELAY =  60
+MOTION_ALARM_DELAY =  3
 
 logging.basicConfig(format='%(asctime)s %(levelname)s:%(message)s', filename='/var/log/pir.log',level=logging.DEBUG)
 
@@ -74,7 +74,7 @@ try:
       # PIR is triggered
       start_time=time.time()
       logging.info(' Motion detected!')
-      subprocess.call("binairy.sh", shell=True)
+      subprocess.call("POST/picture.sh", shell=True)
       Previous_State=1
       RequestThread().start()
       
