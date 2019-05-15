@@ -25,6 +25,7 @@
 		div.display_table_cell {
 			width: 100% !important;
 		}
+
 </style>
 {% endblock %}
 
@@ -32,15 +33,15 @@
 {% block content %}
 
 <div style="padding-top: 40px;">
-<div class="ui four column stackable grid">
-	{% for image in images %}
-	<div class="column">
-		<div class="ui segment">
-			<img class="ui fluid image" src="/images_photos/{{ image }}">
+	<div class="ui four column stackable grid">
+		{% for image in images %}
+		<div class="column" style="padding:0.3em 0.3em">
+			<div style="padding: 0.3em 0.3em" class="ui segment">
+				<img class="ui fluid image" src="/images_photos/{{ image }}">
+			</div>
 		</div>
+		{% endfor %}
 	</div>
-	{% endfor %}
-</div>
 </div>
 
 {% endblock %}

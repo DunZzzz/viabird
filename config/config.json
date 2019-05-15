@@ -1,8 +1,10 @@
 {
   "development": {
+	  "username": "viabird",
+	  "password": "1ort:142"
   },
   "production": {
-	  "username": "viabird@gmail.com",
+	  "username": "viabird",
 	  "password": "1ort:142"
   },
   "test": {

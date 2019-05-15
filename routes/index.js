@@ -17,7 +17,7 @@ router.get('/logout', (req, res) => {
 });
 
 router.post('/login', [
-	check('email')
+	check('username')
 	.exists()
 	.isString()
 	.not().isEmpty()
@@ -31,7 +31,7 @@ router.post('/login', [
 	const errors = validationResult(req);
 	if (!errors.isEmpty())
 		return res.status(422).render('login', {errors: JSON.stringify(errors.array())});
-	if (req.body.email !== config.username || req.body.password !== config.password)
+	if (req.body.username != config.username || req.body.password !== config.password)
 		return res.render('login');
 	req.session.connected = true;
 	res.redirect('/');
