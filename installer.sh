@@ -8,4 +8,4 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-cat ./tools/viabird.service | sed "s/{{ PATH }}/$(echo $DIR | sed 's/\//\\\//g')/" > test
+cat ./tools/viabird.service | sed "s/{{ PATH }}/$(echo $DIR | sed 's/\//\\\//g')/" > /etc/systemd/system/
