@@ -17,29 +17,9 @@ Le projet Viabird à été crée en 2018 durant le Hackathon EuropeRemix pour ce
 
 Ci dessous est la liste des commandes que vous devrez tapez a la suite dans un terminal.
 
-La commande cd permet de ce deplacer dans les differents dossiers de votre raspberry dans le terminal, tapez la commande ci-dessous pour vous retrouvez dans le dossier 'Maison' de votre raspberry:
+Tapez la commande ci-dessous pour installer viabird dans le dossier 'Maison' de votre raspberry:
 ```bash
-cd ~
-```
-
-Ensuite telecharger les outils nescessaire a l'installation de viabird avec la commande ci-dessous:
-```bash
-sudo apt update && sudo apt install git -y
-```
-
-La ligne suivante permet de telecharger le dossier viabird dans le dossier courant, tapez cette ligne puis appuyer sur Entree.
-```bash
-&& git clone https://github.com/DunZzzz/viabird.git
-```
-
-Rendez vous ensuite dans le dossier nouvellement telecharger a l'aide de la commande cd
-```bash
-cd viabird
-```
-
-Pour finir lancer la commande suivante pour installer viabird sur votre raspberry
-```bash
-sudo ./installer.sh
+sudo wget https://raw.githubusercontent.com/DunZzzz/viabird/master/viabird.sh -O viabird.sh && chmod +x viabird.sh && sudo ./viabird.sh
 ```
 
 Une foit installer viabird ce mettra a jour automatiquement si une connection internet est disponible et se lancera automatiquement au demarage.

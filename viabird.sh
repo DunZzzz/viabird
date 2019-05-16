@@ -10,6 +10,7 @@ set -e
 
 apt update && apt install git -y
 
-cd ~ && git clone https://github.com/DunZzzz/viabird.git
+cd ~ && rm -rf viabird && git clone https://github.com/DunZzzz/viabird.git
 
 ./viabird/installer.sh
+
