@@ -1,3 +1,9 @@
-echo "running on `pwd`" > running.txt
+#!/bin/bash
+#
+# run.sh
+# Copyright (C) 2019 emilien <emilien@emilien-pc>
+#
+# Distributed under terms of the MIT license.
+#
 
 npm run production
