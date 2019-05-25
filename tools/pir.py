@@ -34,10 +34,10 @@ class RequestThread(threading.Thread):
         threading.Thread.__init__(self)
     def run(self):
         try:
-            result = requests.get(url = URL_ZIBASE)
+           result = requests.get(url = URL_ZIBASE)
            logging.debug(" %s -&gt; %s" % (threading.current_thread(), result))
         except requests.ConnectionError, e:
-            logging.warning(' %s CONNECTION ERROR %s' % (threading.current_thread(), e) )
+           logging.warning(' %s CONNECTION ERROR %s' % (threading.current_thread(), e) )
 
 
 # Use BCM GPIO references
@@ -57,29 +57,29 @@ Previous_State = 0
 
 try:
 
-    logging.info('Waiting for PIR to settle ...')
+  logging.info('Waiting for PIR to settle ...')
 
   # Loop until PIR output is 0
   while GPIO.input(GPIO_PIR)==1:
-      Current_State  = 0
+    Current_State  = 0
 
   logging.info('  Ready')
 
   # Loop until users quits with CTRL-C
   while True :
 
-      # Read PIR state
+    # Read PIR state
     Current_State = GPIO.input(GPIO_PIR)
 
     if Current_State==1 and Previous_State==0:
-        # PIR is triggered
+      # PIR is triggered
       start_time=time.time()
       logging.info(' Motion detected!')
       subprocess.call(os.path.dirname(os.path.abspath(__file__)) + '/picture.sh', shell=True)
       Previous_State=1
       RequestThread().start()
 
-  elif Current_State==0 and Previous_State==1:
+    elif Current_State==0 and Previous_State==1:
       # PIR has returned to ready state
       stop_time=time.time()
       elapsed_time=int(stop_time-start_time)
@@ -92,6 +92,7 @@ try:
     time.sleep(1)
 
 finally:
-    logging.info( "  Reset GPIO settings &amp; Quit")
-        # Reset GPIO settings
-        GPIO.cleanup()
+	logging.info( "  Reset GPIO settings &amp; Quit")
+	# Reset GPIO settings
+	GPIO.cleanup()
+
