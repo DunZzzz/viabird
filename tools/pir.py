@@ -22,8 +22,8 @@ def handler(signum = None, frame = None):
     logging.debug (' Signal handler called with signal '+ str(signum) )
     time.sleep(1)  #here check if process is done
     logging.debug( ' Wait done')
-    sys.exit(0)   
-    
+    sys.exit(0)
+
 for sig in [signal.SIGTERM, signal.SIGINT, signal.SIGHUP, signal.SIGQUIT]:
     signal.signal(sig, handler)
 
@@ -44,7 +44,7 @@ class RequestThread(threading.Thread):
 GPIO.setmode(GPIO.BCM)
 
 # Define GPIO to use on Pi
-GPIO_PIR = 7
+GPIO_PIR = 13
 
 logging.info( "PIR Module Holding Time Test (CTRL-C to exit)")
 
@@ -77,7 +77,7 @@ try:
       subprocess.call("picture.sh", shell=True)
       Previous_State=1
       RequestThread().start()
-      
+
     elif Current_State==0 and Previous_State==1:
       # PIR has returned to ready state
       stop_time=time.time()
@@ -87,9 +87,9 @@ try:
       logging.info(' Going to sleep for %s seconds' % (MOTION_ALARM_DELAY))
       time.sleep(MOTION_ALARM_DELAY)
       logging.info('  Ready')
-      
-    time.sleep(1)	
-    
+
+    time.sleep(1)
+
 finally:
 	logging.info( "  Reset GPIO settings &amp; Quit")
 	# Reset GPIO settings

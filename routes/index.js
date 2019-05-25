@@ -4,6 +4,7 @@ const multiparty = require('multiparty');
 const fs = require('fs');
 const path = require('path');
 const Files = require('../app/files');
+const glob = require("glob")
 
 const {check, validationResult} = require('express-validator/check');
 const env = process.env.NODE_ENV || 'development';
@@ -90,7 +91,12 @@ router.use('/', (req, res, next) => {
 });
 
 router.get('/', (req, res) => {
-	fs.readdir('./public/images_photos', (err, images) => {
+	glob('./public/images_photos/*.png', (err, images) => {
+		if (err) throw err;
+		for (let i = 0; i != images.length; i++) {
+			images[i] = images[i].substring('./public/'.length);
+		}
+		console.log(images);
 		res.render('index', { images: images.reverse() });
 	});
 });

@@ -1,8 +1,3 @@
-/*
- * image_convert.js
- * Copyright (C) 2019 emilien <emilien@emilien-pc>
- */
-
 const magick = require('imagemagick');
 const fs = require('fs');
 const PNG = require('pngjs').PNG;
