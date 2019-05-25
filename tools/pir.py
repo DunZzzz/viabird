@@ -44,7 +44,7 @@ class RequestThread(threading.Thread):
 GPIO.setmode(GPIO.BCM)
 
 # Define GPIO to use on Pi
-GPIO_PIR = 13
+GPIO_PIR = 27
 
 logging.info( "PIR Module Holding Time Test (CTRL-C to exit)")
 
