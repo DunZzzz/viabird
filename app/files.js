@@ -1,3 +1,8 @@
+/*
+ * files.js
+ * Copyright (C) 2019 emilien <emilien@emilien-pc>
+ */
+
 var fs = require('fs');
 
 module.exports.move = function move(oldPath, newPath, callback) {

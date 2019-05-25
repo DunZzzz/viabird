@@ -1,3 +1,5 @@
 node_modules/
+public/images_photos/*
+public/images_photos_empty/*
 package-lock.json
 

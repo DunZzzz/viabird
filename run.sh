@@ -6,4 +6,5 @@
 # Distributed under terms of the MIT license.
 #
 
-npm run production
+npm run production &
+cd ./tools && python2 pir.py
