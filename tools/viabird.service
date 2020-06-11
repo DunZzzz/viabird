@@ -7,6 +7,11 @@ WorkingDirectory={{ PATH }}
 ExecStart={{ PATH }}/run.sh
 Restart=on-failure
 User=root
+Environment="VIABIRD_API_ENDPOINT={{ API_ENDPOINT }}"
+Environment="VIABIRD_API_KEY={{ API_KEY }}"
+Environment="VIABIRD_CITY={{ CITY }}'"
+Environment="VIABIRD_ZIP_CODE={{ ZIP_CODE }}"
+Environment="VIABIRD_MACHINE_ID={{ MACHINE_ID }}"
 
 [Install]
 WantedBy=multi-user.target
