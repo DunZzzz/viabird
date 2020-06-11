@@ -14,9 +14,11 @@ fi
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 export GQL_ENDPOINT="http://localhost:8080"
 
-#apt update && apt install npm nodejs python pip -y
+apt install python pip -y
 
-./bin/python entry.py && \
+pip install PyInquirer pprint art requests
+
+python entry.py && \
 source "/tmp/viabird.temp.sh" && \
 echo " -- Lance viabird au démarrage --" && \
 cat $DIR/tools/viabird.service \
