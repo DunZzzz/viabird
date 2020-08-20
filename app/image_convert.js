@@ -29,16 +29,20 @@ function compareImages(input, callback) {
 
 	let results = []
 
+
 	let img1 = fs.createReadStream(input).pipe(new PNG()).on('parsed', () => {
 
 		glob('./public/images_photos*/*.png', (err, files) => {
+
 			if (err) throw err;
-			let max = files.length;
+			let max = files.length + 1;
 			const results_cb = () => {
 				max--;
 				if (max <= 0)
 					callback(results);
 			}
+
+			results_cb();
 
 			files.forEach((file) => {
 				let img2 = fs.createReadStream(file).pipe(new PNG()).on('parsed', () => {
