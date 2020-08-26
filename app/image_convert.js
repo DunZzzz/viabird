@@ -16,6 +16,8 @@ module.exports = function(file, cb) {
 		if (err) throw err;
 		console.log(stdout);
 		fs.chmodSync(pngFilename, '0644');
+		return cb(pngFilename, 1);
+		// UNREACHABLE
 		compareImages(pngFilename, (res) => {
 			let count = res.filter(n => n == 0).length;
 
@@ -28,7 +30,6 @@ module.exports = function(file, cb) {
 function compareImages(input, callback) {
 
 	let results = []
-
 
 	let img1 = fs.createReadStream(input).pipe(new PNG()).on('parsed', () => {
 
@@ -64,7 +65,6 @@ function compareImages(input, callback) {
 					console.log(file + ' -> ' + diff_occur);
 					results.push(diff_occur);
 					results_cb();
-
 				});
 			});
 
