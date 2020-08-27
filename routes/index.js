@@ -42,23 +42,22 @@ router.post('/images/upload', (req, res) => {
 				let image = files.image[0];
 
 				console.log('got image', image)
-				image_convert(image.path, (png_file, count) => {
-					console.log(png_file)
-					let path;
-					if (count < 2) {
-						path = './public/images_photos/' + Date.now() + '_Viabird.png';
-					} else {
-						path = './public/images_photos_empty/' + Date.now() + '_Viabird.png';
-					}
+				//image_convert(image.path, (png_file, count) => {
+				let path;
+				if (count < 2) {
+					path = './public/images_photos/' + Date.now() + '_Viabird.png';
+				} else {
+					path = './public/images_photos_empty/' + Date.now() + '_Viabird.png';
+				}
 
-					Files.move(png_file, path, () => {
-						done_uploading = true;
-						res.json({
-							status: 200,
-							success: true
-						});
+				Files.move(image.path, path, () => {
+					done_uploading = true;
+					res.json({
+						status: 200,
+						success: true
 					});
 				});
+				//});
 			}
 		});
 	} else {
