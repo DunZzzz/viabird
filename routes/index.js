@@ -23,45 +23,49 @@ router.get('/logout', (req, res) => {
 done_uploading = true;
 
 router.post('/images/upload', (req, res) => {
-	if (done_uploading === true) {
-		done_uploading = false
-		let form = new multiparty.Form();
+	try {
+		if (done_uploading === true) {
+			done_uploading = false
+			let form = new multiparty.Form();
 
-		form.parse(req, function(err, fields, files) {
-			if (err || fields === undefined) {
-				done_uploading = true;
-				sendError(res, 'Received Invalid Form.', 400)
-			} else if (!files.hasOwnProperty('image')
-				|| !Array.isArray(files.image)
-				|| files.image.length != 1
-				|| files.image[0].fieldName != 'image'
-			) {
-				done_uploading = true;
-				sendError(res, 'Invalid field in Form.', 400)
-			} else {
-				let image = files.image[0];
-
-				console.log('got image', image)
-				//image_convert(image.path, (png_file, count) => {
-				let path;
-				if (count < 2) {
-					path = './public/images_photos/' + Date.now() + '_Viabird.png';
-				} else {
-					path = './public/images_photos_empty/' + Date.now() + '_Viabird.png';
-				}
-
-				Files.move(image.path, path, () => {
+			form.parse(req, function(err, fields, files) {
+				if (err || fields === undefined) {
 					done_uploading = true;
-					res.json({
-						status: 200,
-						success: true
+					sendError(res, 'Received Invalid Form.', 400)
+				} else if (!files.hasOwnProperty('image')
+					|| !Array.isArray(files.image)
+					|| files.image.length != 1
+					|| files.image[0].fieldName != 'image'
+				) {
+					done_uploading = true;
+					sendError(res, 'Invalid field in Form.', 400)
+				} else {
+					let image = files.image[0];
+
+					console.log('got image', image)
+					//image_convert(image.path, (png_file, count) => {
+					let path;
+					//if (count < 2) {
+						path = './public/images_photos/' + Date.now() + '_Viabird.png';
+					//} else {
+						//path = './public/images_photos_empty/' + Date.now() + '_Viabird.png';
+					//}
+
+					Files.move(image.path, path, () => {
+						done_uploading = true;
+						res.json({
+							status: 200,
+							success: true
+						});
 					});
-				});
-				//});
-			}
-		});
-	} else {
-		sendError(res, 'Still processing image.', 400)
+					//});
+				}
+			});
+		} else {
+			sendError(res, 'Still processing image.', 400)
+		}
+	} catch (e) {
+		console.error(e);
 	}
 });
 
