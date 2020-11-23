@@ -7,7 +7,7 @@ Une foit installé la mangeoire offre aux utilisateurs une page web sur laquelle
 
 Le projet Viabird a été créé en 2018 durant le Hackathon EuropeRemix pour se poursuivre à travers le LabFab de Rennes et 3 étudiants Epitech.
 
-New installation of the software can be done using the new_box branch which will upload the photos directly to viabird.eu
+Les nouvelles instalation du logiciel peuvent utiliser la branche new_box.
 
 ## Prerequis Raspberry
 
