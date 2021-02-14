@@ -6,21 +6,19 @@
 # Distributed under terms of the MIT license.
 #
 
-if [ "$EUID" -ne 0 ]
-  then echo "Se script doit être lancer en tant qu'administrateur: sudo ./install.sh"
-  exit 1
-fi
+set -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-export GQL_ENDPOINT="http://localhost:8080"
+export GQL_ENDPOINT="http://viabird.eu:8080"
 
+echo "Pre-installation de viabird..."
 apt install python pip -y
 
-pip install PyInquirer pprint art requests
+pip install PyInquirer art requests > /dev/null
 
-python entry.py && \
-source "/tmp/viabird.temp.sh" && \
-echo " -- Lance viabird au démarrage --" && \
+python entry.py
+source "/tmp/viabird.temp.sh"
+echo " -- Lance viabird au démarrage --"
 cat $DIR/tools/viabird.service \
 	 | sed "s/{{ PATH }}/$(echo $DIR | sed 's/\//\\\//g')/" \
 	 | sed "s/{{ API_ENDPOINT }}/$(echo $GQL_ENDPOINT | sed 's/\//\\\//g')/" \
@@ -28,9 +26,11 @@ cat $DIR/tools/viabird.service \
 	 | sed "s/{{ ZIP_CODE }}/$VIABIRD_ZIP_CODE/" \
 	 | sed "s/{{ API_KEY }}/$VIABIRD_API_KEY/" \
 	 | sed "s/{{ MACHINE_ID }}/$(cat /etc/machine-id)/" \
-	> /etc/systemd/system/viabird.service && \
-systemctl daemon-reload && \
-systemctl enable viabird.service && \
-systemctl start viabird.service && \
-echo "Viabird a bien été installer." && \
-echo "/!\\ Changer l'emplacement de se dossier cassera l'installation de viabird."
+	> /tmp/viabird.service
+echo "Entrer votre mot de passe administrateur:"
+sudo mv /tmp/viabird.service /etc/systemd/system/viabird.service
+sudo systemctl daemon-reload
+sudo systemctl enable viabird.service
+sudo systemctl start viabird.service
+echo "Viabird a bien été installer."
+echo "/!\\ Changer l'emplacement de ce dossier cassera l'installation de viabird."

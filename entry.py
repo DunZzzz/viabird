@@ -27,6 +27,7 @@ def url_ok(url):
 url = None
 try:
     url = os.environ['GQL_ENDPOINT']
+    print(url)
 except:
     print('The environments variables are not set, please run install.sh')
     exit(1)
@@ -104,7 +105,7 @@ class ApiKeyValidator(Validator):
 api_key = prompt([{
             'type': 'input',
             'name': 'api_key',
-            'message': 'Entrez votre clé d\'api (trouvez la sur la page settings de viabird.fr)',
+            'message': 'Entrez votre clé d\'api (trouvez la sur la page settings de viabird.eu)',
             'validate': ApiKeyValidator
         }])
 
