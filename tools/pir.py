@@ -14,7 +14,6 @@ import threading
 import subprocess
 import os
 
-URL_ZIBASE = 'http://192.168.0.100/cgi-bin/domo.cgi?CMD=LM%2049'
 MOTION_ALARM_DELAY =  3
 
 logging.basicConfig(format='%(asctime)s %(levelname)s:%(message)s', filename='/var/log/pir.log',level=logging.DEBUG)
@@ -27,18 +26,6 @@ def handler(signum = None, frame = None):
 
 for sig in [signal.SIGTERM, signal.SIGINT, signal.SIGHUP, signal.SIGQUIT]:
     signal.signal(sig, handler)
-
-# Each request  gets its own thread
-class RequestThread(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-    def run(self):
-        try:
-           result = requests.get(url = URL_ZIBASE)
-           logging.debug(" %s -&gt; %s" % (threading.current_thread(), result))
-        except requests.ConnectionError, e:
-           logging.warning(' %s CONNECTION ERROR %s' % (threading.current_thread(), e) )
-
 
 # Use BCM GPIO references
 # instead of physical pin numbers
@@ -77,7 +64,6 @@ try:
       logging.info(' Motion detected!')
       subprocess.call(os.path.dirname(os.path.abspath(__file__)) + '/picture.sh', shell=True)
       Previous_State=1
-      RequestThread().start()
 
     elif Current_State==0 and Previous_State==1:
       # PIR has returned to ready state
@@ -95,4 +81,3 @@ finally:
 	logging.info( "  Reset GPIO settings &amp; Quit")
 	# Reset GPIO settings
 	GPIO.cleanup()
-
